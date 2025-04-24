@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rewards - Solo Leveling Productivity Tool</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Coin Display -->
+  <div class="coin-bar">
+    <h3>Your Gold Coins</h3>
+    <div class="coin-display">💰 <span id="coinCount">0</span> coins</div>
+    <progress id="coinProgress" value="0" max="1000"></progress>
+  </div>
+  
+ <!-- Theme Toggle -->
+  <button onclick="toggleTheme()" style="margin: 10px auto; display: block;">
+    🌗 Toggle Theme
+  </button>
+  
+
+  <div class="container">
+    <header>
+      <h1>🎉 Rewards Summary</h1>
+      <div style="text-align: center;">
+        <button onclick="window.location.href='quests.html'" class="back-btn">← Back to Quests</button>
+      </div>
+    </header>
+
+    <div class="reward-summary">
+      <h2>Well Done!</h2>
+      <p>You’ve been earning coins by completing quests. Here’s how you’re progressing:</p>
+
+      <!-- Study Quest Progress -->
+      <div class="coin-bar">
+        <h3>📘 Study Quests</h3>
+        <div class="coin-display">💰 <span id="studyCoins">0</span> coins</div>
+        <progress id="studyProgress" value="0" max="500"></progress>
+      </div>
+
+      <!-- Workout Quest Progress -->
+      <div class="coin-bar">
+        <h3>💪 Workout Quests</h3>
+        <div class="coin-display">💰 <span id="workoutCoins">0</span> coins</div>
+        <progress id="workoutProgress" value="0" max="500"></progress>
+      </div>
+
+      <div style="text-align:center; margin-top: 20px;">
+        <button class="back-btn" onclick="window.location.href='store.html'">🛍️ View Total Gold Coins</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Enable dark mode by default on first load
+    if (!localStorage.getItem("theme")) {
+      localStorage.setItem("theme", "dark");
+    }
+  
+    // Apply saved theme from localStorage
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark");
+    }
+  
+    // Toggle and store the theme on button click
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+      const currentTheme = document.body.classList.contains("dark") ? "dark" : "light";
+      localStorage.setItem("theme", currentTheme);
+    }
+  </script>
+  
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const coins = parseInt(localStorage.getItem("coins")) || 0;
+      const studyCoins = parseInt(localStorage.getItem("studyCoins")) || 0;
+      const workoutCoins = parseInt(localStorage.getItem("workoutCoins")) || 0;
+
+      document.querySelectorAll("#coinCount").forEach(el => el.innerText = coins);
+      document.getElementById("coinProgress").value = coins;
+
+      document.getElementById("studyCoins").innerText = studyCoins;
+      document.getElementById("studyProgress").value = studyCoins;
+
+      document.getElementById("workoutCoins").innerText = workoutCoins;
+      document.getElementById("workoutProgress").value = workoutCoins;
+    });
+  </script>
+</body>
+</html>

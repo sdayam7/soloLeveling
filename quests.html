@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quests - Solo Leveling Productivity Tool</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Coin Bar -->
+  <div class="coin-bar">
+    <h3>Your Gold Coins</h3>
+    <div class="coin-display">💰 <span id="coinCount">0</span> coins</div>
+    <progress id="coinProgress" value="0" max="1000"></progress>
+  </div>
+
+  <!-- Theme Toggle Button -->
+  <button onclick="toggleTheme()" style="margin: 10px auto; display: block;">
+    🌗 Toggle Theme
+  </button>
+  
+
+  <div class="container">
+    <header>
+      <h1>📘 Quests</h1>
+      <div style="text-align: center;">
+        <button class="back-btn" onclick="window.location.href='index.html'">← Back to Dashboard</button>
+      </div>
+    </header>
+
+    <!-- Study Quests Section -->
+    <div class="accordion-section">
+      <button class="accordion">📚 Study Quests</button>
+      <div class="panel">
+        <div class="quests-grid">
+          <div class="quest" data-reward="5">30 min pomodoro - 5 sets</div>
+          <div class="quest" data-reward="10">60 min pomodoro - 5 sets</div>
+          <div class="quest" data-reward="50">5 hr/day</div>
+          <div class="quest" data-reward="100">7 hr/day</div>
+          <div class="quest" data-reward="150">10 hr/day</div>
+          <div class="quest" data-reward="200">12 hr/day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Workout Quests Section -->
+    <div class="accordion-section">
+      <button class="accordion">💪 Workout Quests</button>
+      <div class="panel">
+        <div class="quests-grid">
+          <div class="quest">2 sets each - Crunches, Russian Twists, In & Outs, Planks, Squats...</div>
+          <div class="quest">3 sets each - Crunches, Russian Twists, In & Outs, Planks, Squats...</div>
+          <div class="quest">4 sets each - Crunches, Russian Twists, In & Outs, Planks, Squats...</div>
+          <div class="quest">5 sets each - Crunches, Russian Twists, In & Outs, Planks, Squats...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rewards Link Button -->
+    <div style="text-align:center; margin-top: 20px;">
+      <button class="back-btn" onclick="window.location.href='rewards.html'">🎉 View Rewards</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="quests.js"></script>
+  <script src="profile.js"></script>
+  <script>
+    // Enable dark mode by default on first load
+    if (!localStorage.getItem("theme")) {
+      localStorage.setItem("theme", "dark");
+    }
+  
+    // Apply saved theme from localStorage
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark");
+    }
+  
+    // Toggle and store the theme on button click
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+      const currentTheme = document.body.classList.contains("dark") ? "dark" : "light";
+      localStorage.setItem("theme", currentTheme);
+    }
+  </script>
+  
+  <script>
+    // Accordion toggle behavior
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".accordion").forEach(button => {
+        button.addEventListener("click", function () {
+          this.classList.toggle("active");
+          const panel = this.nextElementSibling;
+          panel.style.display = panel.style.display === "block" ? "none" : "block";
+        });
+      });
+    });
+  </script>
+</body>
+</html>

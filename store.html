@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Store - Solo Leveling</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Coin Bar -->
+  <div class="coin-bar">
+    <h3>Your Gold Coins</h3>
+    <div class="coin-display">💰 <span id="coinCount">0</span> coins</div>
+    <progress id="coinProgress" value="0" max="1000"></progress>
+  </div>
+
+  <!-- Theme Toggle -->
+  <button onclick="toggleTheme()" style="margin: 10px auto; display: block;">
+    🌗 Toggle Theme
+  </button>
+  
+
+  <div class="container">
+    <header>
+      <h1>🛍️ Item Store</h1>
+      <div style="text-align: center;">
+        <button class="back-btn" onclick="window.location.href='index.html'">← Back to Dashboard</button>
+      </div>
+    </header>
+
+    <!-- Store Items -->
+    <div class="store-grid">
+      <div class="store-item">
+        <p>➕ Unlock Additional Study/Workout Quest</p>
+        <button onclick="unlockCategoryQuest(50)">Unlock for 50 coins</button>
+      </div>
+      <div class="store-item">
+        <p>🆕 Unlock New Quest Type (Custom Category)</p>
+        <button onclick="unlockNewCategory(100)">Unlock for 100 coins</button>
+      </div>
+      <div class="store-item">
+        <p>⚡ Unlock Extra Quest Slot (Advanced)</p>
+        <button onclick="unlockNextQuestSlot(200)">Unlock for 200 coins</button>
+      </div>
+      <div class="store-item">
+        <p>📥 Add More Quests Under Current Category</p>
+        <button onclick="addMoreToCurrentCategory(100)">Unlock for 100 coins</button>
+      </div>
+    </div>
+
+    <!-- Link to My Quests -->
+    <div style="text-align: center; margin-top: 30px;">
+      <button class="go-to-quests-btn" onclick="window.location.href='myQuests.html'">📌 View My Quests</button>
+    </div>
+  </div>
+
+
+  <!-- Scripts -->
+  <script src="store.js"></script>
+  <script>
+    // Enable dark mode by default on first load
+    if (!localStorage.getItem("theme")) {
+      localStorage.setItem("theme", "dark");
+    }
+  
+    // Apply saved theme from localStorage
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark");
+    }
+  
+    // Toggle and store the theme on button click
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+      const currentTheme = document.body.classList.contains("dark") ? "dark" : "light";
+      localStorage.setItem("theme", currentTheme);
+    }
+  </script>
+  
+  <script src="profile.js"></script>
+</body>
+</html>
